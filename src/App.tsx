@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Global, css } from "@emotion/react";
+import styled from "@emotion/styled/macro";
+import { RecoilRoot } from "recoil";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Calendar from "./features/Calendar";
+import TodoFormModal from "./features/TodoFormModal";
+import TodoStatisticsModal from "./features/TodoStatisticsModal";
+
+const globalStyle = css`
+  html,
+  body {
+    background-color: #19181a;
+    margin: 0;
+    font-family: sans-serif, serif, "Apple SD Gothic Neo";
+  }
+`;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+`;
+
+const App: React.FC = () => (
+  <RecoilRoot>
+    <Global styles={globalStyle} />
+    <Container>
+      {/** Calendar */}
+      <Calendar />
+    </Container>
+    {/** Modal */}
+    <TodoFormModal />
+    <TodoStatisticsModal />
+  </RecoilRoot>
+);
 
 export default App;
